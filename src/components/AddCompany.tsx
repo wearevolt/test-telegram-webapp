@@ -46,7 +46,6 @@ const AddCompany: FC = () => {
         layout="horizontal"
         initialValues={formState}
         autoComplete="off"
-        style={{ width: "30%", margin: "auto" }}
       >
         <Form.Item label="Name" name="name">
           <Input
