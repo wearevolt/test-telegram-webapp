@@ -9,7 +9,7 @@ const AddCompany: FC = () => {
     text: "Create",
     disabled: false,
   });
-  const [resetButtonState, setResetButtonState] = useState<{
+  const [resetButtonState] = useState<{
     text: string;
     disabled: boolean;
   }>({
