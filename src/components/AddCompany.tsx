@@ -1,7 +1,21 @@
-import { Button, Form, Input, Typography } from "antd";
 import { FC, useState } from "react";
+import { Button, Form, Input, Typography } from "antd";
+// import { useParams } from "react-router";
+// import { useLocation } from "react-router-dom";
+import { BackButton, MainButton } from '@vkruglikov/react-telegram-web-app';
+import { TelegramWebApps } from 'telegram-webapps-types-new'
 
 const AddCompany: FC = () => {
+  const query = window.location.search.substring(1);
+  console.log("===============");
+  console.log(query)
+  const token = query?.split('=')[1];
+  const initData = Telegram.WebApp.initData;
+  console.log("======initData=========");
+  console.log(initData)
+  console.log("=======initDataUnsafe========");
+  console.log(initData)
+
   const [submitButtonState, setSubmitButtonState] = useState<{
     text: string;
     disabled: boolean;
@@ -9,6 +23,7 @@ const AddCompany: FC = () => {
     text: "Create",
     disabled: false,
   });
+
   const [resetButtonState] = useState<{
     text: string;
     disabled: boolean;
@@ -40,6 +55,7 @@ const AddCompany: FC = () => {
   return (
     <>
       <Typography.Title level={3}>Add company</Typography.Title>
+      <p>{token}</p>
       <Form
         labelCol={{ span: 6 }}
         name="basic"
