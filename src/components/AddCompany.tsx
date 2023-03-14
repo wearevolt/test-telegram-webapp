@@ -57,6 +57,8 @@ const AddCompany: FC = () => {
     <>
       <Typography.Title level={3}>Add company</Typography.Title>
       <p>{token}</p>
+      <p>Init: {initData}</p>
+      <p>InitUnsafe: {JSON.stringify(initDataUnsafe)}</p>
       <Form
         labelCol={{ span: 6 }}
         name="basic"
@@ -101,8 +103,6 @@ const AddCompany: FC = () => {
           </Button>
         </Form.Item>
       </Form>
-      <p>Init: {initData}</p>
-      <p>InitUnsafe: {JSON.stringify(initDataUnsafe)}</p>
     </>
   );
 };
