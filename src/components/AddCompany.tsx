@@ -11,6 +11,7 @@ const AddCompany: FC = () => {
   console.log(query)
   const token = query?.split('=')[1];
   const initData = Telegram.WebApp.initData;
+  const initDataUnsafe = Telegram.WebApp.initDataUnsafe;
   console.log("======initData=========");
   console.log(initData)
   console.log("=======initDataUnsafe========");
@@ -100,6 +101,8 @@ const AddCompany: FC = () => {
           </Button>
         </Form.Item>
       </Form>
+      <p>{initData}</p>
+      <p>{initDataUnsafe?.toString()}</p>
     </>
   );
 };
