@@ -101,8 +101,8 @@ const AddCompany: FC = () => {
           </Button>
         </Form.Item>
       </Form>
-      <p>{initData}</p>
-      <p>{initDataUnsafe?.toString()}</p>
+      <p>Init: {initData}</p>
+      <p>InitUnsafe: {JSON.stringify(initDataUnsafe)}</p>
     </>
   );
 };
