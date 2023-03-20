@@ -4,7 +4,7 @@ import { Button, Form, Input, Typography } from "antd";
 // import { useLocation } from "react-router-dom";
 // import { BackButton, MainButton } from "@vkruglikov/react-telegram-web-app";
 import { TelegramWebApps } from "telegram-webapps-types-new";
-import { useGetTokenQuery } from "../queryes";
+import { useGetTgMessage, useGetTokenQuery } from "../queryes";
 import { TgInitData } from "../types";
 import { getDeviceId } from "../utils";
 // testserver.com
@@ -17,9 +17,12 @@ const AddCompany: FC = () => {
   console.log("=======initDataUnsafe========");
   console.log(initData);
 
-  const result = useGetTokenQuery(initData, initDataUnsafe, getDeviceId());
+  const authResult = useGetTokenQuery(initData, initDataUnsafe, getDeviceId());
   console.log("===========result=============");
-  console.log(result);
+  console.log(authResult);
+  console.log("------------------------------");
+  const messageResult = useGetTgMessage(authResult.data.getToken.jwtToken);
+  console.log(messageResult);
 
   const [submitButtonState, setSubmitButtonState] = useState<{
     text: string;

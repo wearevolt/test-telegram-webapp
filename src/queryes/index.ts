@@ -9,6 +9,14 @@ const getTokenQuery = gql`
   }
 `;
 
+const getTgMessagesQuery = gql`
+  query GetTgMessages {
+    getTgMessages {
+      cursor
+    }
+  }
+`;
+
 const initStrTemp = "initstr";
 const initDataTemp = {
   id: "sdkfjdskf",
@@ -32,4 +40,15 @@ const useGetTokenQuery = (
     },
   });
 
-export { useGetTokenQuery };
+const getContext = (token: string) => ({
+  headers: {
+    authorization: `Bearer ${token}`,
+  },
+});
+
+const useGetTgMessage = (token: string) =>
+  useQuery(getTgMessagesQuery, {
+    context: getContext(token),
+  });
+
+export { useGetTokenQuery, useGetTgMessage };
