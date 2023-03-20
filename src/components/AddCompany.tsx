@@ -20,8 +20,14 @@ const AddCompany: FC = () => {
   const authResult = useGetTokenQuery(initData, initDataUnsafe, getDeviceId());
   console.log("===========result=============");
   console.log(authResult);
-  console.log("------------------------------");
-  const messageResult = useGetTgMessage(authResult.data.getToken.jwtToken);
+  // if (authResult.loading) {
+  //   return null;
+  // }
+  // if (authResult.error) {
+  //   return (<p>Error</p>)
+  // }
+  console.log("------------aaa------------------");
+  const messageResult = useGetTgMessage(authResult.data?.getToken?.jwtToken);
   console.log(messageResult);
 
   const [submitButtonState, setSubmitButtonState] = useState<{

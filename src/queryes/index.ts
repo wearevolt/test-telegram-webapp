@@ -31,7 +31,7 @@ const useGetTokenQuery = (
   initStr: string,
   initData: TgInitData,
   deviceId: string
-) =>
+) => 
   useQuery(getTokenQuery, {
     variables: {
       initStr: initStrTemp,
@@ -48,7 +48,9 @@ const getContext = (token: string) => ({
 
 const useGetTgMessage = (token: string) =>
   useQuery(getTgMessagesQuery, {
+    skip: !token,
     context: getContext(token),
   });
+  // useQuery(getTgMessagesQuery);
 
 export { useGetTokenQuery, useGetTgMessage };
