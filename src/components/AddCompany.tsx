@@ -2,20 +2,24 @@ import { FC, useState } from "react";
 import { Button, Form, Input, Typography } from "antd";
 // import { useParams } from "react-router";
 // import { useLocation } from "react-router-dom";
-import { BackButton, MainButton } from "@vkruglikov/react-telegram-web-app";
+// import { BackButton, MainButton } from "@vkruglikov/react-telegram-web-app";
 import { TelegramWebApps } from "telegram-webapps-types-new";
+import { useGetTokenQuery } from "../queryes";
+import { TgInitData } from "../types";
+import { getDeviceId } from "../utils";
 // testserver.com
+
 const AddCompany: FC = () => {
-  const query = window.location.search.substring(1);
-  console.log("===============");
-  console.log(query);
-  const token = query?.split("=")[1];
   const initData = Telegram.WebApp.initData;
-  const initDataUnsafe = Telegram.WebApp.initDataUnsafe;
+  const initDataUnsafe = Telegram.WebApp.initDataUnsafe as TgInitData;
   console.log("======initData=========");
   console.log(initData);
   console.log("=======initDataUnsafe========");
   console.log(initData);
+
+  const result = useGetTokenQuery(initData, initDataUnsafe, getDeviceId());
+  console.log("===========result=============");
+  console.log(result);
 
   const [submitButtonState, setSubmitButtonState] = useState<{
     text: string;
@@ -61,6 +65,7 @@ const AddCompany: FC = () => {
       <p>Name persist: {localStorage.getItem("name")}</p>
       <p>Init: {initData}</p>
       <p>InitUnsafe: {JSON.stringify(initDataUnsafe)}</p>
+      {/* <p>${JSON.stringify(result)}</p> */}
       <Form
         labelCol={{ span: 6 }}
         name="basic"
