@@ -10,12 +10,61 @@ const getTokenQuery = gql`
 `;
 
 const getTgMessagesQuery = gql`
-  query GetTgMessages {
-    getTgMessages {
+  query GetTgMessages(
+    $filter: TgMessageFilter
+    $after: String
+    $before: String
+    $pageSize: Int
+  ) {
+    getTgMessages(
+      filter: $filter
+      after: $after
+      before: $before
+      pageSize: $pageSize
+    ) {
       cursor
+      lastPage
+      edges {
+        id
+        text
+      }
     }
   }
 `;
+
+const getTgChatWithPermissionError = gql`
+  query GetTgChats(
+    $filter: TgChatFilter
+    $after: String
+    $before: String
+    $pageSize: Int
+  ) {
+    getTgChats(
+      filter: $filter
+      after: $after
+      before: $before
+      pageSize: $pageSize
+    ) {
+      cursor
+      lastPage
+      edges {
+        title
+      }
+    }
+  }
+`;
+// const getTgMessagesQuery = gql`
+//   query GetTgMessages {
+//     getTgMessages {
+//       cursor
+//       lastPage
+//       edges {
+//         id
+//         text
+//       }
+//     }
+//   }
+// `;
 
 const initStrTemp = "initstr";
 const initDataTemp = {
@@ -31,7 +80,7 @@ const useGetTokenQuery = (
   initStr: string,
   initData: TgInitData,
   deviceId: string
-) => 
+) =>
   useQuery(getTokenQuery, {
     variables: {
       initStr: initStrTemp,
@@ -46,11 +95,40 @@ const getContext = (token: string) => ({
   },
 });
 
-const useGetTgMessage = (token: string) =>
+const useGetTgMessage = (
+  token: string,
+  filter?: TgMessageFilter,
+  after?: string,
+  before?: string,
+  pageSize?: number
+) =>
   useQuery(getTgMessagesQuery, {
     skip: !token,
     context: getContext(token),
+    // variables: {
+    //   filter,
+    //   after,
+    //   before,
+    //   pageSize,
+    // },
   });
-  // useQuery(getTgMessagesQuery);
+// useQuery(getTgMessagesQuery);
+const useGetTgChatWithPermissionError = (
+  token: string,
+  filter?: any,
+  after?: string,
+  before?: string,
+  pageSize?: number
+) =>
+  useQuery(getTgChatWithPermissionError, {
+    skip: !token,
+    context: getContext(token),
+    variables: {
+      filter,
+      after,
+      before,
+      pageSize,
+    },
+  });
 
-export { useGetTokenQuery, useGetTgMessage };
+export { useGetTokenQuery, useGetTgMessage, useGetTgChatWithPermissionError };

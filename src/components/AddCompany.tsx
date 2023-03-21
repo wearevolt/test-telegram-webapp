@@ -4,7 +4,11 @@ import { Button, Form, Input, Typography } from "antd";
 // import { useLocation } from "react-router-dom";
 // import { BackButton, MainButton } from "@vkruglikov/react-telegram-web-app";
 import { TelegramWebApps } from "telegram-webapps-types-new";
-import { useGetTgMessage, useGetTokenQuery } from "../queryes";
+import {
+  useGetTgChatWithPermissionError,
+  useGetTgMessage,
+  useGetTokenQuery,
+} from "../queryes";
 import { TgInitData } from "../types";
 import { getDeviceId } from "../utils";
 // testserver.com
@@ -27,8 +31,29 @@ const AddCompany: FC = () => {
   //   return (<p>Error</p>)
   // }
   console.log("------------aaa------------------");
-  const messageResult = useGetTgMessage(authResult.data?.getToken?.jwtToken);
-  console.log(messageResult);
+  const messageResult = useGetTgChatWithPermissionError(
+    authResult.data?.getToken?.jwtToken,
+    {
+      available_status: "permission_error",
+    }
+  );
+  console.log(messageResult.data?.getTgChats.edges);
+
+  const [chatData, setChatData] = useState<{
+    titles: string[];
+  }>({
+    titles: [],
+  });
+
+  const chats = (messageResult.data?.getTgChats.edges as any[])
+  .map(item => item.title);
+  const chatDataList = chats.map((title) => <li>{title}</li>);
+
+  // setChatData({
+  //   titles: (messageResult.data?.getTgChats.edges as any[]).map(
+  //     (item) => item.title
+  //   ),
+  // });
 
   const [submitButtonState, setSubmitButtonState] = useState<{
     text: string;
@@ -67,13 +92,13 @@ const AddCompany: FC = () => {
     });
     setSubmitButtonState({ text: "Create", disabled: false });
   };
-
   return (
     <>
       <Typography.Title level={3}>Add company</Typography.Title>
-      <p>Name persist: {localStorage.getItem("name")}</p>
-      <p>Init: {initData}</p>
-      <p>InitUnsafe: {JSON.stringify(initDataUnsafe)}</p>
+      {/* <p>Name persist: {localStorage.getItem("name")}</p> */}
+      {/* <p>Init: {initData}</p> */}
+      {/* <p>InitUnsafe: {JSON.stringify(initDataUnsafe)}</p> */}
+      <ul>{chatDataList}</ul>
       {/* <p>${JSON.stringify(result)}</p> */}
       <Form
         labelCol={{ span: 6 }}
