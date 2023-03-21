@@ -6,3 +6,7 @@ export type TgInitData = {
   hash: string;
   user: Partial<User>;
 };
+
+export type TgMessageFilter = {
+  tg_chat_id: string;
+}

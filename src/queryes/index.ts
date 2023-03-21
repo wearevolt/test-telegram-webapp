@@ -1,5 +1,5 @@
 import { useQuery, gql } from "@apollo/client";
-import { TgInitData } from "../types";
+import { TgInitData, TgMessageFilter } from "../types";
 
 const getTokenQuery = gql`
   query GetToken($initStr: String!, $deviceId: String!, $initData: TgInitData) {
