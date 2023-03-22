@@ -1,12 +1,12 @@
 import React from "react";
-import AddCompany from './components/AddCompany'
+import Chats from './components/Chats'
 import "./App.css";
 
 function App() {
   return (
     <div className="App">
       <div className="contentWrapper">
-        <AddCompany />
+        <Chats />
       </div>
     </div>
   );
