@@ -45,7 +45,7 @@ const AddCompany: FC = () => {
     titles: [],
   });
 
-  const chats = (messageResult.data?.getTgChats.edges as any[])
+  const chats = (messageResult.data?.getTgChats.edges as any[] | undefined)
   ?.map(item => item.title);
   const chatDataList = chats?.map((title) => <li>{title}</li>);
 
