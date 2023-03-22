@@ -83,9 +83,9 @@ const useGetTokenQuery = (
 ) =>
   useQuery(getTokenQuery, {
     variables: {
-      initStr: initStrTemp,
+      initStr: initStr,
       deviceId,
-      initData: initDataTemp,
+      initData: initData,
     },
   });
 
