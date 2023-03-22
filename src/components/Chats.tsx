@@ -1,5 +1,5 @@
 import { FC, useState } from "react";
-import { Typography, List } from "antd";
+import { Typography } from "antd";
 import { TelegramWebApps } from "telegram-webapps-types-new";
 import {
   useGetTgChatWithPermissionError,
@@ -33,19 +33,8 @@ const AddCompany: FC = () => {
   }
   return (
     <>
-      <Typography.Title level={3}>Chats with permission error</Typography.Title>
+      <Typography.Title level={3}>Add company</Typography.Title>
       <ul>{chatDataList}</ul>
-      <List
-        header={<div>Sample HEADER</div>}
-        footer={<div>Sample FOOTER</div>}
-        bordered
-        dataSource={chats}
-        renderItem={item => (
-          <List.Item>
-            {item}
-          </List.Item>
-        )}
-      />
     </>
   );
 };
