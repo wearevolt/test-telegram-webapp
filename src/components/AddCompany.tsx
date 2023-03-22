@@ -46,7 +46,7 @@ const AddCompany: FC = () => {
   });
 
   const chats = (messageResult.data?.getTgChats.edges as any[])
-  .map(item => item.title);
+  ?.map(item => item.title);
   const chatDataList = chats?.map((title) => <li>{title}</li>);
 
   // setChatData({
