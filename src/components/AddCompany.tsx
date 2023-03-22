@@ -24,12 +24,6 @@ const AddCompany: FC = () => {
   const authResult = useGetTokenQuery(initData, initDataUnsafe, getDeviceId());
   console.log("===========result=============");
   console.log(authResult);
-  // if (authResult.loading) {
-  //   return null;
-  // }
-  // if (authResult.error) {
-  //   return (<p>Error</p>)
-  // }
   console.log("------------aaa------------------");
   const messageResult = useGetTgChatWithPermissionError(
     authResult.data?.getToken?.jwtToken,
@@ -38,6 +32,12 @@ const AddCompany: FC = () => {
     }
   );
   console.log(messageResult.data?.getTgChats.edges);
+  // if (authResult.loading) {
+  //   return null;
+  // }
+  // if (authResult.error) {
+  //   return (<p>Error</p>)
+  // }
 
   const [chatData, setChatData] = useState<{
     titles: string[];
@@ -47,7 +47,7 @@ const AddCompany: FC = () => {
 
   const chats = (messageResult.data?.getTgChats.edges as any[])
   .map(item => item.title);
-  const chatDataList = chats.map((title) => <li>{title}</li>);
+  const chatDataList = chats?.map((title) => <li>{title}</li>);
 
   // setChatData({
   //   titles: (messageResult.data?.getTgChats.edges as any[]).map(
@@ -92,6 +92,12 @@ const AddCompany: FC = () => {
     });
     setSubmitButtonState({ text: "Create", disabled: false });
   };
+  if (authResult.loading) {
+    return null;
+  }
+  if (authResult.error) {
+    return (<p>Error</p>)
+  }
   return (
     <>
       <Typography.Title level={3}>Add company</Typography.Title>
