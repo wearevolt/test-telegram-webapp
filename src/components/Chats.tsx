@@ -15,7 +15,7 @@ const AddCompany: FC = () => {
 
   const authResult = useGetTokenQuery(initData, initDataUnsafe, getDeviceId());
   const messageResult = useGetTgChatWithPermissionError(
-    authResult.data?.getToken?.jwtToken,
+    authResult.data?.getToken,
     {
       available_status: "permission_error",
     }

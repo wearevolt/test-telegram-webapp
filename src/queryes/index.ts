@@ -101,14 +101,14 @@ const useGetTgMessage = (
   });
 
 const useGetTgChatWithPermissionError = (
-  token: string,
+  isToken: boolean,
   filter?: any,
   after?: string,
   before?: string,
   pageSize?: number
 ) =>
   useQuery(getTgChatWithPermissionError, {
-    skip: !token,
+    skip: !isToken,
     // context: getContext(token),
     variables: {
       filter,
