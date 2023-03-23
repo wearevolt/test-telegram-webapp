@@ -33,7 +33,7 @@ const AddCompany: FC = () => {
   }
   return (
     <>
-      <Typography.Title level={3}>Add company</Typography.Title>
+      <Typography.Title level={3}>Chats with permission error</Typography.Title>
       <ul>{chatDataList}</ul>
     </>
   );
