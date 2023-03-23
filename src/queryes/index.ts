@@ -1,4 +1,4 @@
-import { useQuery, gql } from "@apollo/client";
+import { useQuery, gql, useMutation } from "@apollo/client";
 import { TgInitData, TgMessageFilter } from "../types";
 
 const getTokenQuery = gql`
@@ -74,7 +74,7 @@ const useGetTokenQuery = (
   initData: TgInitData,
   deviceId: string
 ) =>
-  useQuery(getTokenQuery, {
+  useMutation(getTokenQuery, {
     variables: {
       initStr: initStr,
       deviceId,
