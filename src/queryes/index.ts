@@ -55,15 +55,19 @@ const getTgChatWithPermissionError = gql`
 `;
 
 // test data
-// const initStrTemp = "initstr";
-// const initDataTemp = {
-//   id: "sdkfjdskf",
-//   auth_date: 234234,
-//   hash: "c2ce64324422fd76771316b12160d5ddfb10868686b21d54e07c1accc6974672",
-//   user: {
-//     id: 967229387,
-//   },
-// };
+const initStrTemp = "initstr";
+const initDataTemp = {
+  query_id: "sdkfjdskf",
+  auth_date: '832784973294',
+  hash: "c2ce64324422fd76771316b12160d5ddfb10868686b21d54e07c1accc6974672",
+  user: {
+    id: 967229387,
+    language_code: "us",
+    username: "djdhf",
+    first_name: "khdskfjhk",
+    last_name: "kdsfjkldj",
+  },
+};
 
 const useGetTokenQuery = (
   initStr: string,
@@ -72,9 +76,9 @@ const useGetTokenQuery = (
 ) =>
   useQuery(getTokenQuery, {
     variables: {
-      initStr: initStr,
+      initStr: initStrTemp,
       deviceId,
-      initData: initData,
+      initData: initDataTemp,
     },
   });
 
@@ -105,7 +109,7 @@ const useGetTgChatWithPermissionError = (
 ) =>
   useQuery(getTgChatWithPermissionError, {
     skip: !token,
-    context: getContext(token),
+    // context: getContext(token),
     variables: {
       filter,
       after,
