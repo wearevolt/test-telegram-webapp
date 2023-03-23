@@ -2,8 +2,8 @@ import { useQuery, gql } from "@apollo/client";
 import { TgInitData, TgMessageFilter } from "../types";
 
 const getTokenQuery = gql`
-  mutation AuthWebapp($initStr: String!, $deviceId: String!, $initData: TgInitData) {
-    authWebapp(init_str: $initStr, device_id: $deviceId, init_data: $initData) {
+  query AuthWebapp($initStr: String!, $deviceId: String!, $initData: TgInitData) {
+    getToken(init_str: $initStr, device_id: $deviceId, init_data: $initData) {
       jwtToken
     }
   }
