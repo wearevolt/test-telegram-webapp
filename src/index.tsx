@@ -10,7 +10,7 @@ const root = ReactDOM.createRoot(
 );
 
 const link = createHttpLink({
-  uri: "http://localhost:5000/graphql",
+  uri: "https://telegram.qa.moneyball2.com/graphql",
   credentials: 'include',
 })
 const client = new ApolloClient({
